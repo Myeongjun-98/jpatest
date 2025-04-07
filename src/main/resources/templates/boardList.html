@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+  <link rel="stylesheet" href="/css/default.css">
+  <script src="/javascript/default.js"></script>
+  <link rel="stylesheet" href="/css/board.css">
+</head>
+
+<div id="wrap">
+<div id="main">
+
+  <h1 class="text-light text-center mb15"> 모두의 정보 </h1>
+  <div class="boardbtn mb15">
+    <a href="/board/write" class="btn">Write</a>
+  </div>
+  <ul class="">
+    <li class="text-light bb2sl mb15 pv10 flex">
+      <span class="w10p text-center">.No</span>
+      <span class="w40p text-center">Title</span>
+      <span class="w20p text-center">Writer</span>
+      <span class="w10p text-center">Hit</span>
+      <span class="w20p text-center">Date</span>
+    </li>
+
+    <li th:each="row , stat : ${boardListDtos}" class="text-light mb15 pv10 flex mh-blue">
+      <span th:text="${stat.count + (page-1)*10}" class="w10p text-center">.No</span>
+      <span  class="w40p text-center">
+                    	<a th:text="${row.title}" th:href="'/board/detail?id=' + ${row.id}"></a>
+                    </span>
+      <span th:text="${row.memberId}" class="w20p text-center">Writer</span>
+      <span th:text="${row.hit}" class="w10p text-center">Hit</span>
+      <span th:text="${row.writeDate}" class="w20p text-center">Date</span>
+    </li>
+
+  </ul>
+
+  <div class="paging-box text-light">
+    <ul class="paging-num-list flex" >
+
+      <li class="paging-num"> &lt </li>
+      <li th:each="p : ${#numbers.sequence(start,end)}" class="paging-num">
+
+        <span th:if="${page==p}" th:text="${p}" class="pnum" style="color:red;"></span>
+        <a th:unless="${page==p}" th:text="${p}" th:href="'/board/index?page=' + ${p}"></a>
+
+      </li>
+      <li class="paging-num"> &gt </li>
+    </ul>
+  </div>
+</div>
+</div>
+<th:block th:replace="layout/menu :: menu"></th:block>
+</html>
+
+
+
+

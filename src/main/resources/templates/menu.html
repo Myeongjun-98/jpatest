@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="menu" id="menu">
+  <ul class="menu-list">
+    <th:block th:if="${session.user==null}">
+      <li class="menu">
+        <a href="/member/signIn">로그인</a>
+      </li>
+      <li class="menu">
+        <a href="/member/signUp">회원가입</a>
+      </li>
+    </th:block>
+    <th:block th:unless="${session.user==null}">
+      <li class="menu" th:text="${session.user}"></li>
+      <li class="menu">
+        <a href="/member/logout">LOGOUT</a>
+      </li>
+    </th:block>
+
+    <li class="menu"><a href="/">HOME</a></li>
+    <li class="menu"><a href="/">모두의 공간</a></li>
+    <li class="menu">
+      <a href="/board/index?page=1">모두의 정보</a>
+    </li>
+  </ul>
+</div>
+</html>

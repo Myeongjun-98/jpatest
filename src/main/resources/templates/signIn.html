@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+  <link rel="stylesheet" href="/css/default.css">
+  <script src="/javascript/default.js"></script>
+</head>
+<div id="wrap">
+  <div  id="main">
+<div th:fragment="signIn" id="loginModal" th:style="${show==1 ? 'display:block;' : ''}">
+  <div id="modalBg"></div>
+  <div id="loginBox" class="box">
+    <h2 class="text-light text-center mb15">TALK SignIN</h2>
+    <form th:object="${memberSignInDto}" method="post" action="/member/signIn">
+      <div class="input-field">
+        <input type="text" th:field="*{memberId}" class="inputBox login-input" placeholder="아이디">
+        <p th:if="#{fields.Errors('memberId')}" th:errors="*{memberId}" class="error"></p>
+      </div>
+      <div class="input-field">
+        <input type="password" th:field="*{password}" class="inputBox login-input" placeholder="비밀번호">
+        <p th:if="#{fields.Errors('password')}" th:errors="*{password}" class="error"></p>
+      </div>
+
+      <p th:if="${#fields.hasGlobalErrors()}"
+         th:each="err : ${ #fields.globalErrors() }"
+         th:text="${err}" class="error"></p>
+
+      <div class="input-field">
+        <button class="btn">LOGIN</button>
+      </div>
+    </form>
+  </div>
+</div>
+  </div>
+</div>
+<th:block th:replace="layout/menu :: menu"></th:block>
+</html>

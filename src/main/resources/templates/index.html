@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="/css/default.css">
+    <script src="/javascript/default.js"></script>
+</head>
+<body>
+    <div id="wrap">
+        <div  id="main">
+            <div id="slideWrap">
+                <ul id="slideBox">
+                    <li class="slide-image"><img src="/image/slide1.jpg" alt=""></li>
+                    <li class="slide-image"><img src="/image/slide2.jpg" alt=""></li>
+                    <li class="slide-image"><img src="/image/slide3.jpg" alt=""></li>
+                    <li class="slide-image"><img src="/image/slide4.jpg" alt=""></li>
+                    <li class="slide-image"><img src="/image/slide5.jpg" alt=""></li>
+                </ul>
+            </div>
+            <div id="boardWrap">
+                <div class="recent">
+                    <div class="recent-board">
+                        <h3>최근글</h3>
+                        <ul>
+                            <li class="board-field"><span class="title">제목</span><span class="writer">작성자</span></li>
+
+                            <li>
+                                <span class="title">
+                                    <a href=""></a>
+                                </span>
+                                <span class="writer"></span>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="popular">
+                    <div class="popular-board">
+                        <h3>인기글</h3>
+                        <ul>
+                            <li class="board-field"><span class="title">제목</span><span class="writer">작성자</span></li>
+
+                            <li>
+                                <span class="title">
+                                    <a href=""></a>
+                                </span>
+                                <span class="writer"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <th:block th:replace="layout/menu :: menu"></th:block>
+
+</body>
+</html>

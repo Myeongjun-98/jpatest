@@ -1,0 +1,15 @@
+.boardbtn{
+    width:100px;
+}
+
+.paging-box{
+    margin:50px 0;
+}
+
+.paging-num-list{
+    width:400px;
+    margin:0 auto;
+}
+.paging-num{
+    flex:1;
+}
