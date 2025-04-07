@@ -5,7 +5,6 @@
   <title>Title</title>
 
   <link rel="stylesheet" href="/css/default.css">
-  <script src="/javascript/default.js"></script>
 </head>
 <div id="wrap">
   <div  id="main">
@@ -13,7 +12,7 @@
   <div id="modalBg"></div>
   <div id="loginBox" class="box">
     <h2 class="text-light text-center mb15">TALK SignIN</h2>
-    <form th:object="${memberSignInDto}" method="post" action="/member/signIn">
+    <form th:object="${memberDto}" method="post" action="/member/signIn">
       <div class="input-field">
         <input type="text" th:field="*{memberId}" class="inputBox login-input" placeholder="아이디">
         <p th:if="#{fields.Errors('memberId')}" th:errors="*{memberId}" class="error"></p>
@@ -35,5 +34,5 @@
 </div>
   </div>
 </div>
-<th:block th:replace="layout/menu :: menu"></th:block>
+<th:block th:replace="menu :: menu"></th:block>
 </html>
