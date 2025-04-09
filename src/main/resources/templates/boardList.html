@@ -26,8 +26,8 @@
       <span class="w20p text-center">Date</span>
     </li>
 
-    <li th:each="row , stat : ${boardListDtos}" class="text-light mb15 pv10 flex mh-blue">
-      <span th:text="${stat.count + (page-1)*10}" class="w10p text-center">.No</span>
+    <li th:each="row , stat : ${boardListDtos.getContent()}" class="text-light mb15 pv10 flex mh-blue">
+      <span th:text="${stat.count + (page)*10}" class="w10p text-center">.No</span>
       <span  class="w40p text-center">
                     	<a th:text="${row.title}" th:href="'/board/detail?id=' + ${row.id}"></a>
                     </span>
@@ -38,14 +38,17 @@
 
   </ul>
 
-  <div class="paging-box text-light">
+  <div class="paging-box text-light" th:with="start=${ (boardListDtos.number/maxPage) * maxPage + 1 },
+               end = (${boardListDtos.totalPages == 0 ? 1 :
+               (start + (maxPage - 1) < boardListDtos.totalPages ? start + (maxPage - 1) :
+               boardListDtos.totalPages)})">
     <ul class="paging-num-list flex" >
 
       <li class="paging-num"> &lt </li>
-      <li th:each="p : ${#numbers.sequence(start,end)}" class="paging-num">
+      <li th:each="p : ${#numbers.sequence(start, end)}" class="paging-num">
 
-        <span th:if="${page==p}" th:text="${p}" class="pnum" style="color:red;"></span>
-        <a th:unless="${page==p}" th:text="${p}" th:href="'/board/index?page=' + ${p}"></a>
+        <span th:if="${page==p-1}" th:text="${p}" class="pnum" style="color:red"></span>
+        <a th:unless="${page==p-1}" th:text="${p}" th:href="'/board/index/' + ${p-1}"></a>
 
       </li>
       <li class="paging-num"> &gt </li>
@@ -53,7 +56,7 @@
   </div>
 </div>
 </div>
-<th:block th:replace="layout/menu :: menu"></th:block>
+<th:block th:replace="menu :: menu"></th:block>
 </html>
 
 
